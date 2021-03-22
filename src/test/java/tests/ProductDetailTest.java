@@ -9,21 +9,14 @@ import pageModels.ProductDetailModel;
 
 public class ProductDetailTest extends BaseTest {
     @Test
-    public void evaluationTest() {
+    public void evaluationTest() throws InterruptedException {
         background();
         ProductDetailModel productDetailModel = new ProductDetailModel(webDriver);
         webElements = productDetailModel.listYes();
-        for (WebElement element : webElements){
-            productDetailModel.scrollDown();
-            element.click();
-            break;
-        }
-
+        productDetailModel.scrollDown();
+        webElements.get(0).click();
         webElements = productDetailModel.listThanks();
-        for (WebElement element : webElements){
-            Assert.assertEquals(element.getText(), "Teşekkür Ederiz.", "İstenilen mesaj gösterilmedi...");
-            break;
-        }
+        Assert.assertEquals(webElements.get(0).getText(), "Teşekkür Ederiz.", "İstenilen mesaj gösterilmedi...");
     }
 
     @Test

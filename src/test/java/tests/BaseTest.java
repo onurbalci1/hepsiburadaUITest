@@ -33,10 +33,7 @@ public class BaseTest {
         ProductDetailModel productDetailModel = new ProductDetailModel(webDriver);
         productDetailModel.setProduct("Iphone");
         webElements = productDetailModel.listProductTitle();
-        for (WebElement element : webElements){
-            element.click();
-            break;
-        }
+        webElements.get(0).click();
         productDetailModel.clickProductReviews();
     }
 
