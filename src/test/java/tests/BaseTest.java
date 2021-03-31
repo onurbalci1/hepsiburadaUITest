@@ -20,7 +20,7 @@ public class BaseTest {
     public void setUp(){
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-notifications");
-        ProductDetailModel productDetailModel = new ProductDetailModel(webDriver);
+        //ProductDetailModel productDetailModel = new ProductDetailModel(webDriver);
         WebDriverManager.chromedriver().setup();
 
         webDriver = new ChromeDriver(options);

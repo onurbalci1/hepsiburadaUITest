@@ -13,6 +13,11 @@ public class ProductDetailModel extends BaseModel {
     By listYesAnswer = By.xpath("//div[@class='hermes-ReviewCard-module-1lb7d']/div[1]");
     By listThanksResponse = By.xpath("//span[text()='Teşekkür Ederiz.']");
     By listDropdown = By.xpath("//div[@class = 'hermes-Sort-module-1YI0F']/div");
+    By allProduct = By.xpath("//a[@title='Tüm Markalar']");
+    By nValue = By.xpath("//a[text()='N']");
+    By productNameValue = By.xpath("//span[@class='brand-name']");
+    By productLengthValue = By.xpath("//span[@class='brand-length']");
+    By newNikeProduct = By.xpath("//div[@class='title-wrapper with-bg for-desktop brand']/div/div/div");
 
 
 
@@ -38,4 +43,26 @@ public class ProductDetailModel extends BaseModel {
         return getText(listDropdown);
     }
 
+    public void ClickAllProduct() {click(allProduct);}
+    public void ClickNValue() {click(nValue);}
+    int a =  0;
+    public int getNikeProductCount() {
+
+        for (WebElement element : webDriver.findElements(productNameValue)){
+            a++;
+            if (element.getText().contains("Nike"))
+                break;
+        }
+        String nikeProduct = webDriver.findElements(productLengthValue).get(a-1).getText();
+        nikeProduct = nikeProduct.substring(0,nikeProduct.length()-nikeProduct.indexOf(" ")-1);
+        return Integer.parseInt(nikeProduct);
+    }
+    public void ClickNikeProduct() {webDriver.findElements(productLengthValue).get(a-1).click();}
+    public int getNewNikeProduct(){
+        String nikeNewProduct = webDriver.findElement(newNikeProduct).getText();
+        nikeNewProduct = nikeNewProduct.substring(0,nikeNewProduct.length()-nikeNewProduct.indexOf(" ")-4).replace(".","");
+        return Integer.parseInt(nikeNewProduct);
+    }
+
 }
+

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pageModels.BaseModel;
 import pageModels.ProductDetailModel;
 
 
@@ -37,4 +38,17 @@ public class ProductDetailTest extends BaseTest {
             count++;
         }
     }
+    @Test
+    public void nikeProductCountControl(){
+        ProductDetailModel productDetailModel = new ProductDetailModel(webDriver);
+        productDetailModel.ClickAllProduct();
+        productDetailModel.ClickNValue();
+        int nikeProductCount = productDetailModel.getNikeProductCount();
+        productDetailModel.ClickNikeProduct();
+        int nikeNewProductCount = productDetailModel.getNewNikeProduct();
+        Assert.assertEquals(nikeProductCount,nikeNewProductCount);
+    }
+
+
+
 }
